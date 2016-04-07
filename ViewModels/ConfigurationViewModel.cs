@@ -12,6 +12,8 @@ namespace ISEPresenter.ViewModels
 
         private bool _SelectNextStatementAfterRun;
 
+        private bool _SkipTopBreakStatement;
+
         #endregion
 
 
@@ -37,16 +39,37 @@ namespace ISEPresenter.ViewModels
             }
         }
 
+        /// <summary>
+        /// This setting defines, if the a break which is on top of a file (line 1)
+        /// will be skipped during execution.
+        /// </summary>
+        public bool SkipTopBreakStatement
+        {
+            get
+            {
+                return _SkipTopBreakStatement;
+            }
+            set
+            {
+                if (_SkipTopBreakStatement != value)
+                {
+                    _SkipTopBreakStatement = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
 
-        #region Constructurs
+        #region Constructors
 
         /// <summary>
         /// Initialize all settings with default values.
         /// </summary>
         public ConfigurationViewModel()
         {
+            SkipTopBreakStatement       = true;
             SelectNextStatementAfterRun = true;
         }
 

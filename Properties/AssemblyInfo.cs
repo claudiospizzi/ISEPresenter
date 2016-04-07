@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ISEPresenter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("PowerShell ISE Add-On for presenting scripts and demos with a remote control.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ISEPresenter")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyCopyright("Copyright (c) 2016 by Claudio Spizzi. Licensed under MIT license.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -24,9 +24,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- CONTROL BUTTONS -->
+        <!-- COMMAND -->
         <Grid Grid.Row="0" Margin="-3,0,-3,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -34,27 +35,27 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=CommandPlayEnabled}" Click="ButtonPlay_Click">
+            <Button Grid.Column="0" Style="{StaticResource CommandButton}" IsEnabled="{Binding Path=CommandPlayEnabled}" Click="PlayCommands">
                 <StackPanel Orientation="Horizontal">
-                    <Image Style="{StaticResource ControlButtonImage}" Source="/ISEPresenter;component/Assets/Play-10.png" />
+                    <Image Style="{StaticResource CommandButtonImage}" Source="/ISEPresenter;component/Assets/Play.png" />
                     <TextBlock Text="{Binding Path=CommandPlayLabel}" />
                 </StackPanel>
             </Button>
-            <Button Grid.Column="1" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=CommandPauseEnabled}" Click="ButtonPause_Click">
+            <Button Grid.Column="1" Style="{StaticResource CommandButton}" IsEnabled="{Binding Path=CommandPauseEnabled}" Click="PauseCommands">
                 <StackPanel Orientation="Horizontal">
-                    <Image Style="{StaticResource ControlButtonImage}" Source="/ISEPresenter;component/Assets/Pause-10.png" />
+                    <Image Style="{StaticResource CommandButtonImage}" Source="/ISEPresenter;component/Assets/Pause.png" />
                     <TextBlock Text="{Binding Path=CommandPauseLabel}" />
                 </StackPanel>
             </Button>
-            <Button Grid.Column="2" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=CommandStopEnabled}" Click="ButtonStop_Click">
+            <Button Grid.Column="2" Style="{StaticResource CommandButton}" IsEnabled="{Binding Path=CommandStopEnabled}" Click="StopCommands">
                 <StackPanel Orientation="Horizontal">
-                    <Image Style="{StaticResource ControlButtonImage}" Source="/ISEPresenter;component/Assets/Stop-10.png" />
+                    <Image Style="{StaticResource CommandButtonImage}" Source="/ISEPresenter;component/Assets/Stop.png" />
                     <TextBlock Text="{Binding Path=CommandStopLabel}" />
                 </StackPanel>
             </Button>
         </Grid>
 
-        <!-- REMOTE CONTROL DEVICE SELECTOR -->
+        <!-- DEVICE SELECTOR -->
         <StackPanel Grid.Row="1" Margin="0,6,0,0">
             <ComboBox Style="{StaticResource DeviceSelectorComboBox}"
                       IsEnabled="{Binding Path=InputEnabled}"
@@ -62,7 +63,7 @@
                       SelectedValue="{Binding Path=RemoteControl.CurrentDeviceName}" />
         </StackPanel>
 
-        <!-- REMOTE CONTROL DEVICE INFORMATION -->
+        <!-- DEVICE INFORMATION -->
         <Grid Grid.Row="2" Margin="0,12,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -76,37 +77,67 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DeviceInfoHeadline}" Text="Remote Control Help" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DeviceInformationHeadline}" Text="Remote Control Device" />
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Run:" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceRunDescription}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource DeviceInformationLabel}" Text="Run:" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource DeviceInformationValue}" Text="{Binding Path=RemoteControl.CurrentDeviceRunDescription}" />
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Clear:" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceClearDescription}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource DeviceInformationLabel}" Text="Clear:" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource DeviceInformationValue}" Text="{Binding Path=RemoteControl.CurrentDeviceClearDescription}" />
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Back:" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceBackDescription}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource DeviceInformationLabel}" Text="Back:" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource DeviceInformationValue}" Text="{Binding Path=RemoteControl.CurrentDeviceBackDescription}" />
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Forward:" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceForwardDescription}" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource DeviceInformationLabel}" Text="Forward:" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource DeviceInformationValue}" Text="{Binding Path=RemoteControl.CurrentDeviceForwardDescription}" />
         </Grid>
-        
+
         <!-- CONFIGURATION -->
         <StackPanel Grid.Row="3" Margin="0,12,0,0">
-            <TextBlock Style="{StaticResource PresenterConfigHeadline}" Text="Presenter Configuration" />
-            <CheckBox Style="{StaticResource PresenterConfigCheckBox}"
-                      IsEnabled="{Binding Path=InputEnabled}"
-                      IsChecked="{Binding Path=Configuration.SelectNextStatementAfterRun}"
+            <TextBlock Style="{StaticResource ConfigurationHeadline}" Text="Presenter Configuration" />
+            <CheckBox Style="{StaticResource ConfigurationCheckBox}"
+                      IsEnabled="{Binding InputEnabled}"
+                      IsChecked="{Binding Configuration.SkipTopBreakStatement}"
+                      Content="Skip initial «break» statement on line 1" />
+            <CheckBox Style="{StaticResource ConfigurationCheckBox}"
+                      IsEnabled="{Binding InputEnabled}"
+                      IsChecked="{Binding Configuration.SelectNextStatementAfterRun}"
                       Content="Select next statement after a run" />
         </StackPanel>
 
-        <!-- PROGRESS BAR -->
-        <!--
+        <!-- EXECUTION INFORMATION -->
         <Grid Grid.Row="5" Margin="0,12,0,0">
-            <ProgressBar Style="{StaticResource StatusProgressBar}" IsIndeterminate="{Binding Path=StatusProgressBarEnabled}" Value="{Binding Path=StatusProgressBarValue, Mode=OneWay}" />
-            <TextBlock Style="{StaticResource StatusLabel}" Text="{Binding Path=StatusLabelValue}" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ExecutionInformationHeadline}" Text="Execution Information" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Status:" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="Running" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Parser:" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="Tokens: 50, Errors: 100" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Statement:" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="2 / 10 (20%)" />
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Duration:" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="0.01 s" />
         </Grid>
-        -->
+
+        <!-- MODULE INFORMATION -->
+        <StackPanel Grid.Row="6" Margin="0,12,0,0">
+            <TextBlock Style="{StaticResource ModuleInformation}" Text="{Binding ModuleInformation}" />
+        </StackPanel>
     </Grid>
 
 </UserControl>

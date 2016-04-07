@@ -5,7 +5,7 @@
     GUID               = 'CFF2DF3D-5649-4BC1-B560-8F2F24252490'
     Author             = 'Claudio Spizzi'
     Copyright          = 'Copyright (c) 2016 by Claudio Spizzi. Licensed under MIT license.'
-    Description        = ''
+    Description        = 'PowerShell ISE Add-On for presenting scripts and demos with a remote control.'
     PowerShellVersion  = '5.0'
     ScriptsToProcess   = @()
     TypesToProcess     = @()

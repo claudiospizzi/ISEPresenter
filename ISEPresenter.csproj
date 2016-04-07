@@ -82,6 +82,7 @@
     <Compile Include="Models\RemoteControlDeviceBase.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\ExecutionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RemoteControlViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -120,27 +121,13 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Scripts\debug.ps1" />
+    <None Include="Scripts\demo.ps1" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Assets\Pause-96.png" />
-    <Resource Include="Assets\Play-96.png" />
-    <Resource Include="Assets\Stop-96.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Pause-48.png" />
-    <Resource Include="Assets\Play-48.png" />
-    <Resource Include="Assets\Stop-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Pause-40.png" />
-    <Resource Include="Assets\Play-40.png" />
-    <Resource Include="Assets\Stop-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Pause-10.png" />
-    <Resource Include="Assets\Play-10.png" />
-    <Resource Include="Assets\Stop-10.png" />
+    <Resource Include="Assets\Pause.png" />
+    <Resource Include="Assets\Play.png" />
+    <Resource Include="Assets\Stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

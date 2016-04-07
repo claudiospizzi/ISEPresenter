@@ -34,7 +34,6 @@ function Test-Ast
 Test-Ast -Name 'Don'
 
 
-
 <#
 
 $Code = $psISE.CurrentPowerShellTab.Files.SelectedFile.Editor.Text
@@ -44,7 +43,7 @@ $Errors = $null
 
 $AST = [System.Management.Automation.Language.Parser]::ParseInput($Code, [ref]$Tokens, [ref]$Errors)
 
-$Elements = $AST.FindAll({ $true }, $false)
+$Elements = $AST.FindAll({ $args[0] -is [System.Management.Automation.Language.NamedBlockAst] }, $false)
 
 $Elements | Select-Object @{ N = 'Type'; E = { $_.GetType().Name } }, @{ N = 'Element'; E = { $_.ToString() } }
 
@@ -58,7 +57,7 @@ $Elements | Select-Object @{ N = 'Type'; E = { $_.GetType().Name } }, @{ N = 'El
 #
 
 #$test = $ast.FindAll({ $true }, $false)
-#$test = $AST.FindAll({ $args[0] -is [System.Management.Automation.Language.CommandAst]}, $false)
+#$test = $AST.FindAll({ $args[0] -is [System.Management.Automation.Language.NamedBlockAst]}, $false)
 
 #AssignmentStatementAst
 #PipelineAst

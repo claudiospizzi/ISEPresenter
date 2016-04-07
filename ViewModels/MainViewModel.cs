@@ -3,7 +3,9 @@ using Microsoft.PowerShell.Host.ISE;
 using Stateless;
 using System;
 using System.Management.Automation.Language;
-
+using System.Reflection;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ISEPresenter.ViewModels
 {
@@ -60,6 +62,15 @@ namespace ISEPresenter.ViewModels
         /// Access to the configuration view model.
         /// </summary>
         public ConfigurationViewModel Configuration
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Access to the execition information view model.
+        /// </summary>
+        public ExecutionViewModel Execution
         {
             get;
             private set;
@@ -143,6 +154,19 @@ namespace ISEPresenter.ViewModels
             }
         }
 
+        /// <summary>
+        /// Return the module information including version.
+        /// </summary>
+        public string ModuleInformation
+        {
+            get
+            {
+                AssemblyName assembly = typeof(MainViewModel).Assembly.GetName();
+
+                return string.Format("{0} {1}", assembly.Name, assembly.Version);
+            }
+        }
+
         #endregion
 
 
@@ -157,6 +181,7 @@ namespace ISEPresenter.ViewModels
 
             RemoteControl = new RemoteControlViewModel();
             Configuration = new ConfigurationViewModel();
+            Execution     = new ExecutionViewModel();
 
             InitializeStateMachine();
             InitializeDeviceEvent();
@@ -218,7 +243,8 @@ namespace ISEPresenter.ViewModels
         {
             RemoteControl.CurrentDevice.RegisterHock();
 
-            // ToDo: Parse file!
+            Execution.Initialize(_Host.HostObject);
+            Execution.SelectCurrent();
         }
 
         /// <summary>
@@ -228,7 +254,7 @@ namespace ISEPresenter.ViewModels
         {
             RemoteControl.CurrentDevice.UnregisterHock();
 
-            // ToDo: Clear parsed file!
+            Execution.Reset();
         }
 
         /// <summary>
@@ -245,6 +271,8 @@ namespace ISEPresenter.ViewModels
         private void ResumeTrigger()
         {
             RemoteControl.CurrentDevice.RegisterHock();
+
+            // Todo: Restore current selection
         }
 
         /// <summary>
@@ -253,6 +281,8 @@ namespace ISEPresenter.ViewModels
         private void CancelTrigger()
         {
             RemoteControl.CurrentDevice.UnregisterHock();
+
+            Execution.Reset();
         }
 
         /// <summary>
@@ -274,17 +304,14 @@ namespace ISEPresenter.ViewModels
         {
             if (_StateMachine.IsInState(State.Running))
             {
-                // ToDo
-                _Host.HostObject.CurrentPowerShellTab.Files.SelectedFile.Editor.Select(3, 1, 3, 23);
-                string code = _Host.HostObject.CurrentPowerShellTab.Files.SelectedFile.Editor.Text;
-                Token[] tokens;
-                ParseError[] errors = null;
-
-                ScriptBlockAst ast = Parser.ParseInput(code, out tokens, out errors);
-
-                // System.Management.Automation.Language.NamedBlockAst  .Statements !!
-
-                // TODO !!!!
+                try
+                {
+                    Execution.ExecuteCurrent();
+                }
+                catch
+                {
+                    MessageBox.Show("Run Error");
+                }
             }
         }
 
@@ -292,8 +319,10 @@ namespace ISEPresenter.ViewModels
         {
             if (_StateMachine.IsInState(State.Running))
             {
-                // ToDo
-
+                if (_Host.HostObject.CurrentPowerShellTab.CanInvoke)
+                {
+                    _Host.HostObject.CurrentPowerShellTab.Invoke("Clear-Host");
+                }
             }
         }
 
@@ -301,8 +330,14 @@ namespace ISEPresenter.ViewModels
         {
             if (_StateMachine.IsInState(State.Running))
             {
-                // ToDo
-
+                try
+                {
+                    Execution.MoveBack();
+                }
+                catch
+                {
+                    MessageBox.Show("Back Error");
+                }
             }
         }
 
@@ -310,8 +345,14 @@ namespace ISEPresenter.ViewModels
         {
             if (_StateMachine.IsInState(State.Running))
             {
-                // ToDo
-
+                try
+                {
+                    Execution.MoveForward();
+                }
+                catch
+                {
+                    MessageBox.Show("Forward Error");
+                }
             }
         }
 
@@ -323,7 +364,7 @@ namespace ISEPresenter.ViewModels
         /// <summary>
         /// Try to start a new or resume the current presentation.
         /// </summary>
-        public void Play()
+        public void PlayCommand()
         {
             if (_StateMachine.CanFire(Trigger.Start))
             {
@@ -338,7 +379,7 @@ namespace ISEPresenter.ViewModels
         /// <summary>
         /// Try to pause a suspended presentation.
         /// </summary>
-        public void Pause()
+        public void PauseCommand()
         {
             if (_StateMachine.CanFire(Trigger.Suspend))
             {
@@ -349,7 +390,7 @@ namespace ISEPresenter.ViewModels
         /// <summary>
         /// Stop or cancel a current presentation.
         /// </summary>
-        public void Stop()
+        public void StopCommand()
         {
             if (_StateMachine.CanFire(Trigger.Stop))
             {

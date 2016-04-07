@@ -23,17 +23,14 @@ namespace ISEPresenter.Views
     /// </summary>
     public partial class MainView : UserControl, IAddOnToolHostObject
     {
+        #region Members
+
         private readonly MainViewModel _MainViewModel;
 
+        #endregion
 
-        public MainView()
-        {
-            InitializeComponent();
 
-            _MainViewModel = new MainViewModel(this);
-            DataContext = _MainViewModel;
-        }
-
+        #region Properties
 
         /// <summary>
         /// Reference to the ISE object model.
@@ -44,22 +41,58 @@ namespace ISEPresenter.Views
             set;
         }
 
+        #endregion
 
-        private void ButtonPlay_Click(object sender, RoutedEventArgs e)
+
+        #region Constructors
+
+        /// <summary>
+        /// Initialize user control and the view model.
+        /// </summary>
+        public MainView()
         {
-            _MainViewModel.Play();
+            InitializeComponent();
+
+            _MainViewModel = new MainViewModel(this);
+
+            DataContext = _MainViewModel;
         }
 
+        #endregion
 
-        private void ButtonPause_Click(object sender, RoutedEventArgs e)
+
+        #region Private Methods
+
+        /// <summary>
+        /// Pass-throught method for play command.
+        /// </summary>
+        /// <param name="sender">The sender button.</param>
+        /// <param name="e">Event arguments.</param>
+        private void PlayCommands(object sender, RoutedEventArgs e)
         {
-            _MainViewModel.Pause();
+            _MainViewModel.PlayCommand();
         }
 
-
-        private void ButtonStop_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Pass-throught method for pause command.
+        /// </summary>
+        /// <param name="sender">The sender button.</param>
+        /// <param name="e">Event arguments.</param>
+        private void PauseCommands(object sender, RoutedEventArgs e)
         {
-            _MainViewModel.Stop();
+            _MainViewModel.PauseCommand();
         }
+
+        /// <summary>
+        /// Pass-throught method for stop command.
+        /// </summary>
+        /// <param name="sender">The sender button.</param>
+        /// <param name="e">Event arguments.</param>
+        private void StopCommands(object sender, RoutedEventArgs e)
+        {
+            _MainViewModel.StopCommand();
+        }
+
+        #endregion
     }
 }
