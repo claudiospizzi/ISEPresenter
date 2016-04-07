@@ -21,7 +21,7 @@ namespace ISEPresenter.Views
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class MainView : IAddOnToolHostObject
+    public partial class MainView : UserControl, IAddOnToolHostObject
     {
         private readonly MainViewModel _MainViewModel;
 
@@ -30,7 +30,7 @@ namespace ISEPresenter.Views
         {
             InitializeComponent();
 
-            _MainViewModel = new MainViewModel();
+            _MainViewModel = new MainViewModel(this);
             DataContext = _MainViewModel;
         }
 

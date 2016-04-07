@@ -34,22 +34,22 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=ButtonPlayEnabled}" Click="ButtonPlay_Click">
+            <Button Grid.Column="0" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=CommandPlayEnabled}" Click="ButtonPlay_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Style="{StaticResource ControlButtonImage}" Source="/ISEPresenter;component/Assets/Play-10.png" />
-                    <TextBlock Text="{Binding Path=ButtonPlayLabel}" />
+                    <TextBlock Text="{Binding Path=CommandPlayLabel}" />
                 </StackPanel>
             </Button>
-            <Button Grid.Column="1" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=ButtonPauseEnabled}" Click="ButtonPause_Click">
+            <Button Grid.Column="1" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=CommandPauseEnabled}" Click="ButtonPause_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Style="{StaticResource ControlButtonImage}" Source="/ISEPresenter;component/Assets/Pause-10.png" />
-                    <TextBlock Text="Pause" />
+                    <TextBlock Text="{Binding Path=CommandPauseLabel}" />
                 </StackPanel>
             </Button>
-            <Button Grid.Column="2" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=ButtonStopEnabled}" Click="ButtonStop_Click">
+            <Button Grid.Column="2" Style="{StaticResource ControlButton}" IsEnabled="{Binding Path=CommandStopEnabled}" Click="ButtonStop_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Style="{StaticResource ControlButtonImage}" Source="/ISEPresenter;component/Assets/Stop-10.png" />
-                    <TextBlock Text="{Binding Path=ButtonStopLabel}" />
+                    <TextBlock Text="{Binding Path=CommandStopLabel}" />
                 </StackPanel>
             </Button>
         </Grid>
@@ -57,9 +57,9 @@
         <!-- REMOTE CONTROL DEVICE SELECTOR -->
         <StackPanel Grid.Row="1" Margin="0,6,0,0">
             <ComboBox Style="{StaticResource DeviceSelectorComboBox}"
-                      IsEnabled="{Binding Path=RemoteControlDeviceEnabled}"
-                      ItemsSource="{Binding Path=RemoteControlDeviceNameList}"
-                      SelectedValue="{Binding Path=RemoteControlDeviceName}" />
+                      IsEnabled="{Binding Path=InputEnabled}"
+                      ItemsSource="{Binding Path=RemoteControl.DeviceNameList}"
+                      SelectedValue="{Binding Path=RemoteControl.CurrentDeviceName}" />
         </StackPanel>
 
         <!-- REMOTE CONTROL DEVICE INFORMATION -->
@@ -79,32 +79,34 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DeviceInfoHeadline}" Text="Remote Control Help" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Run:" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControlRunDescription}" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceRunDescription}" />
 
             <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Clear:" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControlClearDescription}" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceClearDescription}" />
 
             <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Back:" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControlBackDescription}" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceBackDescription}" />
 
             <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource DeviceInfoLabel}" Text="Forward:" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControlForwardDescription}" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource DeviceInfoValue}" Text="{Binding Path=RemoteControl.CurrentDeviceForwardDescription}" />
         </Grid>
         
-        <!-- PRESENTER CONFIGURATION -->
+        <!-- CONFIGURATION -->
         <StackPanel Grid.Row="3" Margin="0,12,0,0">
             <TextBlock Style="{StaticResource PresenterConfigHeadline}" Text="Presenter Configuration" />
             <CheckBox Style="{StaticResource PresenterConfigCheckBox}"
-                      IsEnabled="{Binding Path=ConfigurationEnabled}"
-                      IsChecked="{Binding Path=ConfigurationSelectNextExpression}"
+                      IsEnabled="{Binding Path=InputEnabled}"
+                      IsChecked="{Binding Path=Configuration.SelectNextStatementAfterRun}"
                       Content="Select next statement after a run" />
         </StackPanel>
 
-        <!-- VISUAL PROGRESS INDICATOR -->
+        <!-- PROGRESS BAR -->
+        <!--
         <Grid Grid.Row="5" Margin="0,12,0,0">
             <ProgressBar Style="{StaticResource StatusProgressBar}" IsIndeterminate="{Binding Path=StatusProgressBarEnabled}" Value="{Binding Path=StatusProgressBarValue, Mode=OneWay}" />
             <TextBlock Style="{StaticResource StatusLabel}" Text="{Binding Path=StatusLabelValue}" />
         </Grid>
+        -->
     </Grid>
 
 </UserControl>

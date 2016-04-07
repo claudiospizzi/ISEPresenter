@@ -6,23 +6,23 @@ using System.Windows.Forms;
 namespace ISEPresenter.Models
 {
     /// <summary>
-    /// Generic keyboard remote control device.
+    /// Logitech Presenter R400 remote control device.
     /// </summary>
-    public class GenericKeyboard : RemoteControlDeviceBase
+    public class LogitechPresenterR400 : RemoteControlDeviceBase
     {
         #region Constructors
 
         /// <summary>
-        /// Initialize a generic keyboard remote control.
+        /// Initialize the Logitech Presenter R400.
         /// </summary>
-        public GenericKeyboard()
+        public LogitechPresenterR400()
         {
-            DeviceName = Resources.RemoteControlDevice_GenericKeyboard_DeviceName;
+            DeviceName = Resources.RemoteControlDevice_LogitechPresenterR400_DeviceName;
 
-            RunDescription     = Resources.RemoteControlDevice_GenericKeyboard_RunDescription;
-            ClearDescription   = Resources.RemoteControlDevice_GenericKeyboard_ClearDescription;
-            BackDescription    = Resources.RemoteControlDevice_GenericKeyboard_BackDescription;
-            ForwardDescription = Resources.RemoteControlDevice_GenericKeyboard_ForwardDescription;
+            RunDescription     = Resources.RemoteControlDevice_LogitechPresenterR400_RunDescription;
+            ClearDescription   = Resources.RemoteControlDevice_LogitechPresenterR400_ClearDescription;
+            BackDescription    = Resources.RemoteControlDevice_LogitechPresenterR400_BackDescription;
+            ForwardDescription = Resources.RemoteControlDevice_LogitechPresenterR400_ForwardDescription;
         }
 
         #endregion
@@ -31,7 +31,8 @@ namespace ISEPresenter.Models
         #region Private Methods
 
         /// <summary>
-        /// Implement the custom key down handler method to match a generic keybord device.
+        /// Implement the custom key down handler method to match the Logitech
+        /// Presenter R400 device.
         /// </summary>
         /// <param name="sender">The key event sender.</param>
         /// <param name="e">Information about the pressed key.</param>
@@ -43,11 +44,11 @@ namespace ISEPresenter.Models
                     OnRun();
                     break;
 
-                case Keys.F8:
+                case Keys.Escape:
                     OnRun();
                     break;
 
-                case Keys.Delete:
+                case Keys.OemPeriod:
                     OnClear();
                     break;
 

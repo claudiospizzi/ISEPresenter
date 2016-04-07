@@ -22,6 +22,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe</StartProgram>
+    <StartArguments>"..\..\Scripts\debug.ps1" -NoProfile</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +49,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.PowerShell.5.ReferenceAssemblies.1.0.0\lib\net4\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,12 +78,12 @@
     </Page>
     <Compile Include="Models\GenericKeyboard.cs" />
     <Compile Include="Models\IRemoteControlDevice.cs" />
-    <Compile Include="Models\LogitechRemoteR400.cs" />
-    <Compile Include="Models\PresenterState.cs" />
-    <Compile Include="Models\PresenterTrigger.cs" />
+    <Compile Include="Models\LogitechPresenterR400.cs" />
     <Compile Include="Models\RemoteControlDeviceBase.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RemoteControlViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>

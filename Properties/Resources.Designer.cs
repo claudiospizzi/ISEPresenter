@@ -108,45 +108,45 @@ namespace ISEPresenter.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Slide back button.
         /// </summary>
-        internal static string RemoteControlDevice_LogitechRemoteR400_BackDescription {
+        internal static string RemoteControlDevice_LogitechPresenterR400_BackDescription {
             get {
-                return ResourceManager.GetString("RemoteControlDevice_LogitechRemoteR400_BackDescription", resourceCulture);
+                return ResourceManager.GetString("RemoteControlDevice_LogitechPresenterR400_BackDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Blank screen button.
         /// </summary>
-        internal static string RemoteControlDevice_LogitechRemoteR400_ClearDescription {
+        internal static string RemoteControlDevice_LogitechPresenterR400_ClearDescription {
             get {
-                return ResourceManager.GetString("RemoteControlDevice_LogitechRemoteR400_ClearDescription", resourceCulture);
+                return ResourceManager.GetString("RemoteControlDevice_LogitechPresenterR400_ClearDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Logitech Remote R400.
         /// </summary>
-        internal static string RemoteControlDevice_LogitechRemoteR400_DeviceName {
+        internal static string RemoteControlDevice_LogitechPresenterR400_DeviceName {
             get {
-                return ResourceManager.GetString("RemoteControlDevice_LogitechRemoteR400_DeviceName", resourceCulture);
+                return ResourceManager.GetString("RemoteControlDevice_LogitechPresenterR400_DeviceName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Slide forward button.
         /// </summary>
-        internal static string RemoteControlDevice_LogitechRemoteR400_ForwardDescription {
+        internal static string RemoteControlDevice_LogitechPresenterR400_ForwardDescription {
             get {
-                return ResourceManager.GetString("RemoteControlDevice_LogitechRemoteR400_ForwardDescription", resourceCulture);
+                return ResourceManager.GetString("RemoteControlDevice_LogitechPresenterR400_ForwardDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Launch slide show button.
         /// </summary>
-        internal static string RemoteControlDevice_LogitechRemoteR400_RunDescription {
+        internal static string RemoteControlDevice_LogitechPresenterR400_RunDescription {
             get {
-                return ResourceManager.GetString("RemoteControlDevice_LogitechRemoteR400_RunDescription", resourceCulture);
+                return ResourceManager.GetString("RemoteControlDevice_LogitechPresenterR400_RunDescription", resourceCulture);
             }
         }
     }
