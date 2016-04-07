@@ -282,6 +282,8 @@ namespace ISEPresenter.ViewModels
 
                 ScriptBlockAst ast = Parser.ParseInput(code, out tokens, out errors);
 
+                // System.Management.Automation.Language.NamedBlockAst  .Statements !!
+
                 // TODO !!!!
             }
         }
