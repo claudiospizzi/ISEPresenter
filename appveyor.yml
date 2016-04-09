@@ -1,0 +1,10 @@
+
+# PowerShell 5.0 Image
+os: WMF 5
+
+# Clone Directory
+clone_folder: C:\Projects\ISEPresenter
+
+# Build Number
+version: '1.0.0.{build}'
+
