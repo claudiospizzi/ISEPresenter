@@ -24,7 +24,9 @@
     <WarningLevel>4</WarningLevel>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe</StartProgram>
-    <StartArguments>"..\..\Scripts\debug.ps1" -NoProfile</StartArguments>
+    <StartArguments>"..\..\Scripts\debug.ps1,..\..\Scripts\demo.ps1" -NoProfile</StartArguments>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +35,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ISEPresenter.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gma.System.MouseKeyHook, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -79,6 +87,7 @@
     <Compile Include="Models\GenericKeyboard.cs" />
     <Compile Include="Models\IRemoteControlDevice.cs" />
     <Compile Include="Models\LogitechPresenterR400.cs" />
+    <Compile Include="Models\PresenterConfiguration.cs" />
     <Compile Include="Models\RemoteControlDeviceBase.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
@@ -114,6 +123,7 @@
     <None Include="ISEPresenter.psm1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ISEPresenter.snk" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,6 +132,7 @@
     <AppDesigner Include="Properties\" />
     <None Include="Scripts\debug.ps1" />
     <None Include="Scripts\demo.ps1" />
+    <None Include="Scripts\sign.cmd" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -130,6 +141,13 @@
     <Resource Include="Assets\Stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>call $(SolutionDir)Scripts\sign.cmd "$(DevEnvDir)" "$(SolutionDir)" "$(SolutionDir)$(OutputPath)"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

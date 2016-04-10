@@ -2,10 +2,9 @@
 using Microsoft.PowerShell.Host.ISE;
 using Stateless;
 using System;
-using System.Management.Automation.Language;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Input;
+
 
 namespace ISEPresenter.ViewModels
 {
@@ -243,7 +242,7 @@ namespace ISEPresenter.ViewModels
         {
             RemoteControl.CurrentDevice.RegisterHock();
 
-            Execution.Initialize(_Host.HostObject);
+            Execution.Initialize(_Host.HostObject, Configuration.SelectNextStatementAfterRun, Configuration.SkipTopBreakStatement);
             Execution.SelectCurrent();
         }
 

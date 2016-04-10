@@ -19,7 +19,7 @@ ToDo
 Install the module **automatically** from the [PowerShell Gallery](https://www.powershellgallery.com/packages/ISEPresenter) with PowerShell 5.0:
 
 ```powershell
-Install-Module 
+Install-Module ISEPresenter
 ```
 
 To install the module **manually**, perform the following steps:
@@ -27,6 +27,15 @@ To install the module **manually**, perform the following steps:
 1. Download the latest release from [GitHub](https://github.com/claudiospizzi/isepresenter/releases) as a ZIP file
 2. Extract the downloaded module into one of your module paths ([TechNet: Installing Modules](https://technet.microsoft.com/en-us/library/dd878350))
 
+
+## Supported Remote Control Devices
+
+### Generic Keyboard
+
+To run a demo, not only dedicated remote control devices are suppored, a generic keyboard is it too.
+
+###
+ 
 
 ## Versions
 

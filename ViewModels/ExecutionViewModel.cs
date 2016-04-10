@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Management.Automation.Language;
-using System.Windows;
 
 
 namespace ISEPresenter.ViewModels
@@ -15,6 +14,8 @@ namespace ISEPresenter.ViewModels
         #region Members
 
         private ObjectModelRoot _Host;
+
+        private bool _SelectNextStatementAfterRun;
 
         private int _StatementIndex;
 
@@ -38,7 +39,7 @@ namespace ISEPresenter.ViewModels
             {
                 if (_StatementIndex < 0 || _StatementIndex >= _Statements.Count)
                 {
-                    throw new Exception("Statement not available!");
+                    return null;
                 }
 
                 return _Statements[_StatementIndex];
@@ -54,7 +55,7 @@ namespace ISEPresenter.ViewModels
             {
                 if (_StatementIndex < 0 || _StatementIndex >= _Statements.Count)
                 {
-                    throw new Exception("Statement index not available!");
+                    return -1;
                 }
 
                 return _StatementIndex;
@@ -70,7 +71,7 @@ namespace ISEPresenter.ViewModels
             {
                 if (_StatementIndex < 0 || _StatementIndex >= _Statements.Count)
                 {
-                    throw new Exception("Statement count not available!");
+                    return -1;
                 }
 
                 return _Statements.Count;
@@ -99,9 +100,11 @@ namespace ISEPresenter.ViewModels
         /// 
         /// </summary>
         /// <param name="host"></param>
-        public void Initialize(ObjectModelRoot host)
+        public void Initialize(ObjectModelRoot host, bool selectNextStatementAfterRun, bool skipTopBreakStatement)
         {
             _Host = host;
+
+            _SelectNextStatementAfterRun = selectNextStatementAfterRun;
 
             _StatementIndex = 0;
 
@@ -116,7 +119,10 @@ namespace ISEPresenter.ViewModels
             {
                 foreach (StatementAst astStatement in ((NamedBlockAst)astBlock).Statements)
                 {
-                    _Statements.Add(astStatement.Extent);
+                    if (astStatement.Extent.Text != "break")
+                    {
+                        _Statements.Add(astStatement.Extent);
+                    }
                 }
             }
         }
@@ -186,6 +192,11 @@ namespace ISEPresenter.ViewModels
             if (_Host.CurrentPowerShellTab.CanInvoke)
             {
                 _Host.CurrentPowerShellTab.Invoke(_Host.CurrentPowerShellTab.Files.SelectedFile.Editor.SelectedText);
+
+                if (_SelectNextStatementAfterRun && (_StatementIndex + 1) != _Statements.Count)
+                {
+                    MoveForward();
+                }
             }
         }
 

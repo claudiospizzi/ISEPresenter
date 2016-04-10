@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ISEPresenter.Models;
 
 
 namespace ISEPresenter.ViewModels
@@ -10,14 +10,23 @@ namespace ISEPresenter.ViewModels
     {
         #region Members
 
-        private bool _SelectNextStatementAfterRun;
-
-        private bool _SkipTopBreakStatement;
+        private PresenterConfiguration _Configuration;
 
         #endregion
 
 
         #region Properties
+
+        /// <summary>
+        /// Get the whole configuration object.
+        /// </summary>
+        //public PresenterConfiguration Configuration
+        //{
+        //    get
+        //    {
+        //        return _Configuration;
+        //    }
+        //}
 
         /// <summary>
         /// This setting defines, if the next statement is selected inside the
@@ -27,13 +36,13 @@ namespace ISEPresenter.ViewModels
         {
             get
             {
-                return _SelectNextStatementAfterRun;
+                return _Configuration.SelectNextStatementAfterRun;
             }
             set
             {
-                if (_SelectNextStatementAfterRun != value)
+                if (_Configuration.SelectNextStatementAfterRun != value)
                 {
-                    _SelectNextStatementAfterRun = value;
+                    _Configuration.SelectNextStatementAfterRun = value;
                     OnPropertyChanged();
                 }
             }
@@ -47,13 +56,13 @@ namespace ISEPresenter.ViewModels
         {
             get
             {
-                return _SkipTopBreakStatement;
+                return _Configuration.SkipTopBreakStatement;
             }
             set
             {
-                if (_SkipTopBreakStatement != value)
+                if (_Configuration.SkipTopBreakStatement != value)
                 {
-                    _SkipTopBreakStatement = value;
+                    _Configuration.SkipTopBreakStatement = value;
                     OnPropertyChanged();
                 }
             }
@@ -69,8 +78,7 @@ namespace ISEPresenter.ViewModels
         /// </summary>
         public ConfigurationViewModel()
         {
-            SkipTopBreakStatement       = true;
-            SelectNextStatementAfterRun = true;
+            _Configuration = new PresenterConfiguration();
         }
 
         #endregion
