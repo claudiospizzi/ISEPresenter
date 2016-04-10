@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewmodels="clr-namespace:ISEPresenter.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="250">
+             d:DesignHeight="500" d:DesignWidth="250">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -113,6 +113,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <!--<RowDefinition Height="Auto" /> -->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -122,16 +123,19 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ExecutionInformationHeadline}" Text="Execution Information" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Status:" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="Running" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="{Binding Path=ExecutionState}" />
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Parser:" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="Tokens: 50, Errors: 100" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="File:" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="{Binding Execution.ParserFile}" />
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Statement:" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="2 / 10 (20%)" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Parser:" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="{Binding Path=ExecutionParser}" />
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Duration:" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="0.01 s" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Statement:" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="{Binding Path=ExecutionProgress}" />
+
+            <!--<TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource ExecutionInformationLabel}" Text="Duration:" />-->
+            <!--<TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ExecutionInformationValue}" Text="{Binding Execution.Duration}" />-->
         </Grid>
 
         <!-- MODULE INFORMATION -->

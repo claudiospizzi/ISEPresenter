@@ -1,6 +1,7 @@
 ﻿using Microsoft.PowerShell.Host.ISE;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Management.Automation.Language;
 
 
@@ -24,6 +25,10 @@ namespace ISEPresenter.ViewModels
         private Token[] _ParseToken;
 
         private ParseError[] _ParseError;
+
+        private string _ParserFile;
+
+        //private string _Duration;
 
         #endregion
 
@@ -78,6 +83,62 @@ namespace ISEPresenter.ViewModels
             }
         }
 
+        /// <summary>
+        /// The current file which has beed parsed.
+        /// </summary>
+        public string ParserFile
+        {
+            get
+            {
+                return _ParserFile;
+            }
+            private set
+            {
+                if (_ParserFile != value)
+                {
+                    _ParserFile = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Number of parsed tokens during the last initialization.
+        /// </summary>
+        public int TokenCount
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Number of syntax errors detected during the last 
+        /// </summary>
+        public int ErrorCount
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The duration of the last execution.
+        /// </summary>
+        //public string Duration
+        //{
+        //    get
+        //    {
+        //        return _Duration;
+        //    }
+        //    private set
+        //    {
+        //        if (_Duration != value)
+        //        {
+        //            _Duration = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
         #endregion
 
 
@@ -89,6 +150,9 @@ namespace ISEPresenter.ViewModels
         public ExecutionViewModel()
         {
             _Statements = new List<IScriptExtent>();
+
+            TokenCount = -1;
+            ErrorCount = -1;
         }
 
         #endregion
@@ -113,13 +177,18 @@ namespace ISEPresenter.ViewModels
 
             ScriptBlockAst astRoot = Parser.ParseInput(_Host.CurrentPowerShellTab.Files.SelectedFile.Editor.Text, out _ParseToken, out _ParseError);
 
+            ParserFile = _Host.CurrentPowerShellTab.Files.SelectedFile.DisplayName;
+            TokenCount = _ParseToken.Length;
+            ErrorCount = _ParseError.Length;
+            //Duration   = "n/a";
+
             IEnumerable<Ast> astBlocks = astRoot.FindAll((a) => a is NamedBlockAst, false);
 
             foreach (Ast astBlock in astBlocks)
             {
                 foreach (StatementAst astStatement in ((NamedBlockAst)astBlock).Statements)
                 {
-                    if (astStatement.Extent.Text != "break")
+                    if (astStatement.Extent.Text != "break" || !skipTopBreakStatement)
                     {
                         _Statements.Add(astStatement.Extent);
                     }
@@ -137,8 +206,14 @@ namespace ISEPresenter.ViewModels
             _StatementIndex = -1;
             _Statements.Clear();
 
+            ParserFile = string.Empty;
+            //Duration   = string.Empty;
+
             _ParseToken = null;
             _ParseError = null;
+
+            TokenCount = -1;
+            ErrorCount = -1;
         }
 
         /// <summary>
@@ -191,7 +266,13 @@ namespace ISEPresenter.ViewModels
 
             if (_Host.CurrentPowerShellTab.CanInvoke)
             {
+                //Stopwatch watch = new Stopwatch();
+                //watch.Start();
+
                 _Host.CurrentPowerShellTab.Invoke(_Host.CurrentPowerShellTab.Files.SelectedFile.Editor.SelectedText);
+
+                //watch.Stop();
+                //Duration = string.Format("{0} s", Math.Round(watch.Elapsed.TotalSeconds, 2));
 
                 if (_SelectNextStatementAfterRun && (_StatementIndex + 1) != _Statements.Count)
                 {

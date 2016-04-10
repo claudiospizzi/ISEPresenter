@@ -154,6 +154,49 @@ namespace ISEPresenter.ViewModels
         }
 
         /// <summary>
+        /// Get the current state information.
+        /// </summary>
+        public string ExecutionState
+        {
+            get
+            {
+                return _StateMachine.State.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Shows the result of the last parser execution.
+        /// </summary>
+        public string ExecutionParser
+        {
+            get
+            {
+                if (Execution.TokenCount < 0 || Execution.ErrorCount < 0)
+                {
+                    return "";
+                }
+
+                return string.Format("Tokens: {0}, Errors: {1}", Execution.TokenCount, Execution.ErrorCount);
+            }
+        }
+
+        /// <summary>
+        /// Show the current status of the execution progress.
+        /// </summary>
+        public string ExecutionProgress
+        {
+            get
+            {
+                if (Execution.CurrentStatementIndex < 0 || Execution.StatementCount < 0)
+                {
+                    return "";
+                }
+
+                return string.Format("{0} / {1} ({2}%)", Execution.CurrentStatementIndex + 1, Execution.StatementCount, Math.Round((Execution.CurrentStatementIndex + 1.0) / Execution.StatementCount * 100));
+            }
+        }
+
+        /// <summary>
         /// Return the module information including version.
         /// </summary>
         public string ModuleInformation
@@ -244,6 +287,10 @@ namespace ISEPresenter.ViewModels
 
             Execution.Initialize(_Host.HostObject, Configuration.SelectNextStatementAfterRun, Configuration.SkipTopBreakStatement);
             Execution.SelectCurrent();
+
+            OnPropertyChanged("ExecutionState");
+            OnPropertyChanged("ExecutionParser");
+            OnPropertyChanged("ExecutionProgress");
         }
 
         /// <summary>
@@ -254,6 +301,10 @@ namespace ISEPresenter.ViewModels
             RemoteControl.CurrentDevice.UnregisterHock();
 
             Execution.Reset();
+
+            OnPropertyChanged("ExecutionState");
+            OnPropertyChanged("ExecutionParser");
+            OnPropertyChanged("ExecutionProgress");
         }
 
         /// <summary>
@@ -262,6 +313,10 @@ namespace ISEPresenter.ViewModels
         private void SuspendTrigger()
         {
             RemoteControl.CurrentDevice.UnregisterHock();
+
+            //OnPropertyChanged("ExecutionState");
+            //OnPropertyChanged("ExecutionParser");
+            //OnPropertyChanged("ExecutionProgress");
         }
 
         /// <summary>
@@ -271,7 +326,11 @@ namespace ISEPresenter.ViewModels
         {
             RemoteControl.CurrentDevice.RegisterHock();
 
-            // Todo: Restore current selection
+            Execution.SelectCurrent();
+
+            //OnPropertyChanged("ExecutionState");
+            //OnPropertyChanged("ExecutionParser");
+            //OnPropertyChanged("ExecutionProgress");
         }
 
         /// <summary>
@@ -282,6 +341,10 @@ namespace ISEPresenter.ViewModels
             RemoteControl.CurrentDevice.UnregisterHock();
 
             Execution.Reset();
+
+            OnPropertyChanged("ExecutionState");
+            OnPropertyChanged("ExecutionParser");
+            OnPropertyChanged("ExecutionProgress");
         }
 
         /// <summary>
@@ -306,6 +369,8 @@ namespace ISEPresenter.ViewModels
                 try
                 {
                     Execution.ExecuteCurrent();
+
+                    OnPropertyChanged("ExecutionProgress");
                 }
                 catch
                 {
@@ -332,6 +397,8 @@ namespace ISEPresenter.ViewModels
                 try
                 {
                     Execution.MoveBack();
+
+                    OnPropertyChanged("ExecutionProgress");
                 }
                 catch
                 {
@@ -347,6 +414,8 @@ namespace ISEPresenter.ViewModels
                 try
                 {
                     Execution.MoveForward();
+
+                    OnPropertyChanged("ExecutionProgress");
                 }
                 catch
                 {

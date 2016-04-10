@@ -33,6 +33,8 @@ function Test-Ast
 # Invoke the cretaed function
 Test-Ast -Name 'Don'
 
+# Sleep
+Start-Sleep -Seconds 1
 
 <#
 
