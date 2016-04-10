@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ISEPresenter.snk</AssemblyOriginatorKeyFile>
@@ -132,7 +132,6 @@
     <AppDesigner Include="Properties\" />
     <None Include="Scripts\debug.ps1" />
     <None Include="Scripts\demo.ps1" />
-    <None Include="Scripts\sign.cmd" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -146,7 +145,8 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>call $(SolutionDir)Scripts\sign.cmd "$(DevEnvDir)" "$(SolutionDir)" "$(SolutionDir)$(OutputPath)"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
