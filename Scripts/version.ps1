@@ -4,7 +4,7 @@ $Module = 'ISEPresenter'
 $Source = "C:\Projects\$Module"
 
 # Extract module version
-$ModuleVersion = (Invoke-Expression -Command (Get-Content -Path "$Source\bin\Release\$Module.psd1" -Raw)).ModuleVersion
+$ModuleVersion = (Invoke-Expression -Command (Get-Content -Path "$Source\$Module.psd1" -Raw)).ModuleVersion
 
 # Target assembly version strings
 $AssemblyVersion     = "AssemblyVersion(`"$ModuleVersion`")"
