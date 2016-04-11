@@ -8,7 +8,7 @@ $ModuleVersion = (Invoke-Expression -Command (Get-Content -Path "$Source\$Module
 
 # Target assembly version strings
 $AssemblyVersion     = "AssemblyVersion(`"$ModuleVersion`")"
-$AssemblyFileVersion = "AssemblyFileVersion(`"$ModuleVersion.$env:APPVEYOR_BUILD_VERSION`")"
+$AssemblyFileVersion = "AssemblyFileVersion(`"$ModuleVersion`")"
 
 # Regex serarch pattern to replace assembly version
 $AssemblyVersionPattern     = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
