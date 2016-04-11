@@ -6,15 +6,31 @@ PowerShell ISE Add-On for presenting scripts and demos with a remote control.
 
 ## Introduction
 
-The ISEPresenter is a PowerShell ISE Add-On, designed to give teachers and speakers an easier way to present PowerShell Scripts or Demos including the support of remote devices like the Logitech Presenter R400.
+The ISEPresenter is a PowerShell ISE Add-On, designed to give teachers and speakers an easier way to present PowerShell scripts or demos inside the PowerShell ISE. In addition of just executing the statements step by step, the ISE Presenter module also provides support for remote control devices like the Logitech Presenter R400. Thanks to this support, it's possible to execute the scripts or demos with a remote control.
 
+After you have [installed](https://github.com/claudiospizzi/ISEPresenter#installation) the ISEPresenter module, just start it by importing module inside the PowerShell ISE with the command `Import-Module ISEPresenter`. The Add-On will apear on the right side.
 
- 
+![ISEPresenter screenshot in the ready state.](https://raw.githubusercontent.com/claudiospizzi/ISEPresenter/dev/Assets/Screenshot-Ready.png)
+
+To control the presenter, you can first select the remote device and next use the following buttons to start, pause or stop the presentation:
+
+* ![Play](https://raw.githubusercontent.com/claudiospizzi/ISEPresenter/dev/Assets/Play.png) Play
+* ![Play](https://raw.githubusercontent.com/claudiospizzi/ISEPresenter/dev/Assets/Pause.png) Pause
+* ![Play](https://raw.githubusercontent.com/claudiospizzi/ISEPresenter/dev/Assets/Stop.png) Stop
+
+After the presenter was started, it will parse the current active opened script file and afterwards highlight the first detected statement. Now you can use the remote device to navigate throught the statements (back / forward), execute the current statement (run) or clear the PowerShell Console (clear). The active key or button for this actions depends on the selected remote control. You can find a short descripton below the dropdown box.
+
+![ISEPresenter screenshot in the ready state.](https://raw.githubusercontent.com/claudiospizzi/ISEPresenter/dev/Assets/Screenshot-Running.png)
+
+If you have completed your presentation, stop it with the according button. After you have stopped, the remote control device will no longer be active.
 
 
 ## Requirenments
 
-ToDo
+The following minimum requirenments are necessary to use the module:
+
+* Windows PowerShell 3.0
+* Windows Server 2008 R2 / Windows 7
 
 
 ## Installation
