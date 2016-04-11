@@ -6,7 +6,7 @@
     Author             = 'Claudio Spizzi'
     Copyright          = 'Copyright (c) 2016 by Claudio Spizzi. Licensed under MIT license.'
     Description        = 'PowerShell ISE Add-On for presenting scripts and demos with a remote control.'
-    PowerShellVersion  = '5.0'
+    PowerShellVersion  = '3.0'
     ScriptsToProcess   = @()
     TypesToProcess     = @()
     FormatsToProcess   = @()
