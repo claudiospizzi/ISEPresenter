@@ -1,0 +1,28 @@
+
+# PowerShell 5.0 Image
+os: WMF 5
+
+# Clone Directory
+clone_folder: C:\Projects\ISEPresenter
+
+# Build Number
+version: '{build}'
+
+# Install packages
+install:
+- nuget restore
+
+# Build Prepare
+before_build:
+- ps: .\Scripts\version.ps1
+
+# Execute Build
+configuration: Release
+platform: Any CPU
+build:
+  project: ISEPresenter.sln
+  verbosity: minimal
+
+# Publish Artifacts
+after_build:
+- ps: .\Scripts\publish.ps1
