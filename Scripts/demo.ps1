@@ -35,31 +35,3 @@ Test-Ast -Name 'Don'
 
 # Sleep
 Start-Sleep -Seconds 1
-
-<#
-
-$Code = $psISE.CurrentPowerShellTab.Files.SelectedFile.Editor.Text
-
-$Tokens = $null
-$Errors = $null
-
-$AST = [System.Management.Automation.Language.Parser]::ParseInput($Code, [ref]$Tokens, [ref]$Errors)
-
-$Elements = $AST.FindAll({ $args[0] -is [System.Management.Automation.Language.NamedBlockAst] }, $false)
-
-$Elements | Select-Object @{ N = 'Type'; E = { $_.GetType().Name } }, @{ N = 'Element'; E = { $_.ToString() } }
-
-#>
-
-
-
-#
-#
-
-#
-
-#$test = $ast.FindAll({ $true }, $false)
-#$test = $AST.FindAll({ $args[0] -is [System.Management.Automation.Language.NamedBlockAst]}, $false)
-
-#AssignmentStatementAst
-#PipelineAst
