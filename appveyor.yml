@@ -8,9 +8,12 @@ clone_folder: C:\Projects\ISEPresenter
 # Build Number
 version: '{build}'
 
+# Install packages
+install:
+- nuget restore
+
 # Build Prepare
 before_build:
-- cmd: nuget restore
 - ps: .\Scripts\version.ps1
 
 # Execute Build
