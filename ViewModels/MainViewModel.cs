@@ -137,7 +137,7 @@ namespace ISEPresenter.ViewModels
         {
             get
             {
-                return _StateMachine.IsInState(State.Paused) ? "Resume" : "Play";
+                return _StateMachine.IsInState(State.Paused) ? "Cancel" : "Stop";
             }
         }
 
