@@ -4,11 +4,11 @@ $Module = 'ISEPresenter'
 $Source = "C:\Projects\$Module"
 
 # Extract module version
-$ModuleVersion = '1.2.3' #(Invoke-Expression -Command (Get-Content -Path "$Source\bin\Release\$Module.psd1" -Raw)).ModuleVersion
+$ModuleVersion = (Invoke-Expression -Command (Get-Content -Path "$Source\bin\Release\$Module.psd1" -Raw)).ModuleVersion
 
 # Target assembly version strings
 $AssemblyVersion     = "AssemblyVersion(`"$ModuleVersion`")"
-$AssemblyFileVersion = "AssemblyFileVersion(`"$ModuleVersion`")"
+$AssemblyFileVersion = "AssemblyFileVersion(`"$ModuleVersion.$env:APPVEYOR_BUILD_VERSION`")"
 
 # Regex serarch pattern to replace assembly version
 $AssemblyVersionPattern     = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
