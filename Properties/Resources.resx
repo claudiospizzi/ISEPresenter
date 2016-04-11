@@ -133,18 +133,18 @@
     <value>F5 or F8 function key</value>
   </data>
   <data name="RemoteControlDevice_LogitechPresenterR400_BackDescription" xml:space="preserve">
-    <value>Slide back button</value>
+    <value>Slide back button  (Page Up key)</value>
   </data>
   <data name="RemoteControlDevice_LogitechPresenterR400_ClearDescription" xml:space="preserve">
-    <value>Blank screen button</value>
+    <value>Blank screen button  ('.' key)</value>
   </data>
   <data name="RemoteControlDevice_LogitechPresenterR400_DeviceName" xml:space="preserve">
     <value>Logitech Remote R400</value>
   </data>
   <data name="RemoteControlDevice_LogitechPresenterR400_ForwardDescription" xml:space="preserve">
-    <value>Slide forward button</value>
+    <value>Slide forward button  (Page Down key)</value>
   </data>
   <data name="RemoteControlDevice_LogitechPresenterR400_RunDescription" xml:space="preserve">
-    <value>Launch slide show button</value>
+    <value>Launch slide show button  (F5 or ESC key)</value>
   </data>
 </root>

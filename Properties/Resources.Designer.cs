@@ -106,7 +106,7 @@ namespace ISEPresenter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Slide back button.
+        ///   Looks up a localized string similar to Slide back button  (Page Up key).
         /// </summary>
         internal static string RemoteControlDevice_LogitechPresenterR400_BackDescription {
             get {
@@ -115,7 +115,7 @@ namespace ISEPresenter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Blank screen button.
+        ///   Looks up a localized string similar to Blank screen button  (&apos;.&apos; key).
         /// </summary>
         internal static string RemoteControlDevice_LogitechPresenterR400_ClearDescription {
             get {
@@ -133,7 +133,7 @@ namespace ISEPresenter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Slide forward button.
+        ///   Looks up a localized string similar to Slide forward button  (Page Down key).
         /// </summary>
         internal static string RemoteControlDevice_LogitechPresenterR400_ForwardDescription {
             get {
@@ -142,7 +142,7 @@ namespace ISEPresenter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Launch slide show button.
+        ///   Looks up a localized string similar to Launch slide show button  (F5 or ESC key).
         /// </summary>
         internal static string RemoteControlDevice_LogitechPresenterR400_RunDescription {
             get {
